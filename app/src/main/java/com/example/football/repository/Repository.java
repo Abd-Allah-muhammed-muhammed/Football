@@ -43,14 +43,14 @@ public class Repository {
 
 
 
-    Api api;
-    AppDatabase db;
-    RoomCompetitions allCompetitions;
-    MutableLiveData<List<Competition>> dataCompetition;
-    MutableLiveData<List<Team>> dataTeams;
-    MutableLiveData<TeamInfoResponse> dataInfoPlayers ;
+    private Api api;
+    private AppDatabase db;
+    private RoomCompetitions allCompetitions;
+    private MutableLiveData<List<Competition>> dataCompetition;
+    private MutableLiveData<List<Team>> dataTeams;
+    private MutableLiveData<TeamInfoResponse> dataInfoPlayers ;
 
-    Gson gson ;
+    private Gson gson ;
     private MutableLiveData<List<TeamInfoResponse>> dataListMyFavorite;
 
     public Repository() {
@@ -288,7 +288,6 @@ public class Repository {
 
                             textChose.setText("No data available now  \n please try another competition");
 
-                            replace(new HomeFragment(),R.id.container_home,((FragmentActivity)context).getSupportFragmentManager().beginTransaction(),context.getString(R.string.tag_teams));
 
 
                         }
@@ -302,9 +301,8 @@ public class Repository {
                     public void onError(Throwable e) {
 
                         progTeams.setVisibility(View.GONE);
-                        Toast.makeText(context, "No data available now ", Toast.LENGTH_LONG).show();
+                        textChose.setText("No data available now  \n please try another competition");
 
-                        replace(new HomeFragment(),R.id.container_home,((FragmentActivity)context).getSupportFragmentManager().beginTransaction(),context.getString(R.string.tag_teams));
 
 
 
@@ -474,7 +472,7 @@ public class Repository {
             }
 
 
-            if (!id_list.contains(id)){
+            if (!id_list.contains((long)id)){
 
                 db.teamInfoDeo().insert(roomTeamInfo);
 

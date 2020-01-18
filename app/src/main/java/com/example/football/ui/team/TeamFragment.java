@@ -34,7 +34,7 @@ import java.util.List;
 
 public class TeamFragment extends Fragment implements View.OnClickListener {
 
-    AppDatabase database ;
+    private AppDatabase database ;
     private TeamViewModel mViewModel;
 
     private boolean isFavorit  = false ;
@@ -47,7 +47,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    TeamFragmentBinding binding;
+    private TeamFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
@@ -101,12 +101,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                         TeamFragment.this.isFavorit = false;
 
                     }
-                }else {
-
-
-                    binding.imageFavorite.setVisibility(View.GONE);
                 }
-
 
                 setplayerInfo(teamInfoRespons.getSquad());
 
