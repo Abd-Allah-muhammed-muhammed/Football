@@ -3,6 +3,7 @@ package com.example.football.ui.teams;
 import android.content.Context;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -28,9 +29,9 @@ public class TeamsViewModel extends ViewModel {
 
 
 
-    public LiveData<List<Team>> getTeams(Context context, long id, ProgressBar progTeams){
+    public LiveData<List<Team>> getTeams(Context context, long id, ProgressBar progTeams, TextView textChose){
 
-        return repository.getTeams(context,id,progTeams);
+        return repository.getTeams(context,id,progTeams,textChose);
     }
 
 

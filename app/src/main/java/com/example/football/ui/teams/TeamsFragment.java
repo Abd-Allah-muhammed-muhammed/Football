@@ -61,7 +61,7 @@ public class TeamsFragment extends Fragment {
         binding.rvTeams.setHasFixedSize(true);
 
 
-            mViewModel.getTeams(getContext(), id,binding.progTeams)
+            mViewModel.getTeams(getContext(), id,binding.progTeams,binding.textChose)
                     .observe(this, new Observer<List<Team>>() {
 
                 @Override

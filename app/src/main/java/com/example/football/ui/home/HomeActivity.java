@@ -2,6 +2,7 @@ package com.example.football.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,6 +66,28 @@ public class HomeActivity extends AppCompatActivity {
     public void myFavorite(MenuItem item) {
 
         replace(new MYFavoriteFragment(),R.id.container_home,getSupportFragmentManager().beginTransaction(),getString(R.string.tag_favorit));
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+
+
+        HomeFragment HomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tag_home));
+        if (HomeFragment != null && HomeFragment.isVisible()) {
+
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+
+        }else {
+
+            super.onBackPressed();
+
+        }
 
     }
 }

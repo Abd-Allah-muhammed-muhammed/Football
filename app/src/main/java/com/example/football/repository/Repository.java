@@ -3,6 +3,7 @@ package com.example.football.repository;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -102,9 +103,8 @@ public class Repository {
 
         if (allCompetitions ==null){
 
-            Toast.makeText(context, "Please Check Your Internet ", Toast.LENGTH_SHORT).show();
             progHome.setVisibility(View.GONE);
-            textChose.setText("No Data Available Now");
+            textChose.setText("No Data saved yet please open your internet \n to save the data offline" );
 
 
         }else {
@@ -166,11 +166,6 @@ public class Repository {
             public void onError(Throwable e) {
                 progHome.setVisibility(View.GONE);
 
-
-                textChose.setText("No Data Available Now");
-
-//                onCleared();
-
             }
 
             @Override
@@ -199,7 +194,10 @@ public class Repository {
 
     public void closeDataBase(){
 
-        db.close();
+        if (db.isOpen()){
+            db.close();
+        }
+
 
     }
 
@@ -212,20 +210,20 @@ public class Repository {
 
 
     // repository for Teams
-    public LiveData<List<Team>> getTeams(Context context, final long id, ProgressBar progTeams) {
+    public LiveData<List<Team>> getTeams(Context context, final long id, ProgressBar progTeams, TextView textChose) {
 
         initDB(context);
 
 
         if (isNetworkAvailable(context)) {
 
-            getTeamsFromInternet(context, id ,progTeams);
+            getTeamsFromInternet(context, id ,progTeams,textChose);
 
 
         } else {
 
 
-            getTeamsFromDataBase( id);
+            getTeamsFromDataBase( id , textChose ,progTeams);
 
         }
 
@@ -235,7 +233,7 @@ public class Repository {
     }
 
 
-    private void getTeamsFromDataBase( long id) {
+    private void getTeamsFromDataBase(long id, TextView textChose, ProgressBar progTeams) {
 
 
         RoomTeams spicificTeam = db.teamsDeo().getSpicificTeams(id);
@@ -249,17 +247,22 @@ public class Repository {
 
             dataTeams.setValue(teamsResponse.getTeams());
 
+            progTeams.setVisibility(View.GONE);
+
+        }else {
+
+            progTeams.setVisibility(View.GONE);
+            textChose.setText("No data available now  \n please try another competition you have selected before \n or open your internet to load the new data");
+
 
         }
-
-
-    }
+        }
 
 
 
 
     @SuppressLint("CheckResult")
-    private void getTeamsFromInternet(final Context context, final long id, final ProgressBar progTeams) {
+    private void getTeamsFromInternet(final Context context, final long id, final ProgressBar progTeams, final TextView textChose) {
 
 
         api.getTeam(context.getString(R.string.token), id).subscribeOn(io()).observeOn(mainThread())
@@ -276,14 +279,14 @@ public class Repository {
                         if (!teamsResponse.getTeams().isEmpty()) {
 
                             dataTeams.setValue(teamsResponse.getTeams());
-
                             progTeams.setVisibility(View.GONE);
                             insetrTeamsToRoom(teamsResponse , id);
 
                         }else {
 
                             progTeams.setVisibility(View.GONE);
-                            Toast.makeText(context, "No data available now ", Toast.LENGTH_SHORT).show();
+
+                            textChose.setText("No data available now  \n please try another competition");
 
                             replace(new HomeFragment(),R.id.container_home,((FragmentActivity)context).getSupportFragmentManager().beginTransaction(),context.getString(R.string.tag_teams));
 
@@ -299,7 +302,7 @@ public class Repository {
                     public void onError(Throwable e) {
 
                         progTeams.setVisibility(View.GONE);
-                        Toast.makeText(context, "No data available now ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "No data available now ", Toast.LENGTH_LONG).show();
 
                         replace(new HomeFragment(),R.id.container_home,((FragmentActivity)context).getSupportFragmentManager().beginTransaction(),context.getString(R.string.tag_teams));
 
@@ -355,7 +358,7 @@ public class Repository {
 
     // repository for Info Player
 
-    public LiveData<TeamInfoResponse> getTeamInfo(int id, Context context, ProgressBar progInfo){
+    public LiveData<TeamInfoResponse> getTeamInfo(int id, Context context, ProgressBar progInfo, ImageView imageFavorite){
 
 
 
@@ -364,13 +367,13 @@ public class Repository {
 
         if (isNetworkAvailable(context)) {
 
-            getTeamFromInternet(context, id,progInfo);
+            getTeamFromInternet(context, id,progInfo,imageFavorite);
 
 
         } else {
 
 
-            getTeamFromDataBase(context,id,progInfo);
+            getTeamFromDataBase(context,id,progInfo,imageFavorite);
 
         }
 
@@ -379,7 +382,7 @@ public class Repository {
         return dataInfoPlayers;
     }
 
-    private void getTeamFromDataBase(Context context, int id, ProgressBar progInfo) {
+    private void getTeamFromDataBase(Context context, int id, ProgressBar progInfo, ImageView imageFavorite) {
 
         RoomTeamInfo spicificTeam = db.teamInfoDeo().getSpicificTeam(id);
 
@@ -394,7 +397,7 @@ public class Repository {
         }else {
 
             progInfo.setVisibility(View.GONE);
-
+            imageFavorite.setVisibility(View.GONE);
             Toast.makeText(context, "no data saved yet", Toast.LENGTH_SHORT).show();
         }
 
@@ -402,7 +405,7 @@ public class Repository {
     }
 
     @SuppressLint("CheckResult")
-    private void getTeamFromInternet(final Context context, final int id, final ProgressBar progInfo) {
+    private void getTeamFromInternet(final Context context, final int id, final ProgressBar progInfo, final ImageView imageFavorite) {
 
         api.getTeamInfo(context.getString(R.string.token),id).subscribeOn(io()).observeOn(mainThread())
                 .subscribeWith(new Observer<TeamInfoResponse>() {
@@ -422,6 +425,9 @@ public class Repository {
                             dataInfoPlayers.setValue(teamInfoResponse);
                             insetrTeamsToRoom(teamInfoResponse , id);
                             progInfo.setVisibility(View.GONE);
+                        }else {
+
+                            imageFavorite.setVisibility(View.GONE);
                         }
 
 
@@ -431,6 +437,7 @@ public class Repository {
                     public void onError(Throwable e) {
                         progInfo.setVisibility(View.GONE);
 
+                        imageFavorite.setVisibility(View.GONE);
                         Toast.makeText(context, "Please try again later", Toast.LENGTH_SHORT).show();
 
 

@@ -76,4 +76,7 @@ public class HomeFragment extends Fragment {
         mViewModel.closeDataBase();
 
     }
+
+
+
 }

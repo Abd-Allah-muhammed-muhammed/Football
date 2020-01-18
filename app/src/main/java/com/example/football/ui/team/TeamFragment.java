@@ -73,7 +73,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
     private void fetchData() {
 
-        mViewModel.getTeamInfo(id, getContext(),binding.progInfo).observe(this, new Observer<TeamInfoResponse>() {
+        mViewModel.getTeamInfo(id, getContext(),binding.progInfo ,binding.imageFavorite).observe(this, new Observer<TeamInfoResponse>() {
             @Override
             public void onChanged(TeamInfoResponse teamInfoRespons) {
 
@@ -101,6 +101,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                         TeamFragment.this.isFavorit = false;
 
                     }
+                }else {
+
+
+                    binding.imageFavorite.setVisibility(View.GONE);
                 }
 
 

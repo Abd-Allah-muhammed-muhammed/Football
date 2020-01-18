@@ -15,10 +15,6 @@
        >
 
 
-
-
-
-
         <TextView
 
             android:id="@+id/text_chose"

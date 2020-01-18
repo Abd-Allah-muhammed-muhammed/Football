@@ -1,6 +1,7 @@
 package com.example.football.ui.team;
 
 import android.content.Context;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
@@ -22,10 +23,10 @@ public class TeamViewModel extends ViewModel {
 
 
 
-    LiveData<TeamInfoResponse> getTeamInfo(int id, Context context, ProgressBar progInfo){
+    LiveData<TeamInfoResponse> getTeamInfo(int id, Context context, ProgressBar progInfo, ImageView imageFavorite){
 
 
-        return repository.getTeamInfo(id,context,progInfo);
+        return repository.getTeamInfo(id,context,progInfo ,imageFavorite);
     }
 
 
