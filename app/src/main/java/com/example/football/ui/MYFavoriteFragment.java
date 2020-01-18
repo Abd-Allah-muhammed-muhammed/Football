@@ -1,9 +1,12 @@
 package com.example.football.ui;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,8 @@ public class MYFavoriteFragment extends Fragment {
     private MyfavoriteViewModel mViewModel;
 
     MyfavoriteFragmentBinding binding ;
+    private TeamsAdapter adapter;
+
     public static MYFavoriteFragment newInstance() {
         return new MYFavoriteFragment();
     }
@@ -46,14 +51,14 @@ public class MYFavoriteFragment extends Fragment {
     }
 
     private void fetchData() {
-
-
-        final TeamsAdapter adapter = new TeamsAdapter(getActivity());
+         adapter = new TeamsAdapter(getActivity());
         binding.rvTeams.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvTeams.setAdapter(adapter);
-        binding.rvTeams.setHasFixedSize(true);
 
-        mViewModel.getmyFavorite(getContext(),binding.nofavorite).observe(this, new Observer<List<TeamInfoResponse>>() {
+        final MutableLiveData<List<TeamInfoResponse>> listLiveData = mViewModel.getmyFavorite(getContext(), binding.nofavorite);
+
+
+        listLiveData.observe(this, new Observer<List<TeamInfoResponse>>() {
             @Override
             public void onChanged(List<TeamInfoResponse> teamInfoResponses) {
 
@@ -70,13 +75,15 @@ public class MYFavoriteFragment extends Fragment {
                     team.setId(id);
                     String crestUrl = teamInfoResponses.get(i).getCrestUrl();
                     team.setCrestUrl(crestUrl);
-
                     teams.add(team);
 
 
                 }
 
                 adapter.setTeamArrayList((ArrayList<Team>) teams);
+
+
+
 
             }
         });
@@ -89,5 +96,15 @@ public class MYFavoriteFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         mViewModel.closeDataBase();
+    }
+
+
+
+    @Override
+    public void onResume() {
+        adapter.notifyDataSetChanged();
+        fetchData();
+        super.onResume();
+
     }
 }

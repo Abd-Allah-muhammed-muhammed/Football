@@ -4,8 +4,10 @@ import android.content.Context;
 import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.football.adapters.TeamsAdapter;
 import com.example.football.model.TeamInfoResponse;
 import com.example.football.repository.Repository;
 
@@ -21,7 +23,7 @@ public class MyfavoriteViewModel extends ViewModel {
     }
 
 
-    public LiveData<List<TeamInfoResponse>> getmyFavorite(Context context, TextView nofavorite){
+    public MutableLiveData<List<TeamInfoResponse>> getmyFavorite(Context context, TextView nofavorite){
 
         return repository.getFavoriteList(context,nofavorite);
     }

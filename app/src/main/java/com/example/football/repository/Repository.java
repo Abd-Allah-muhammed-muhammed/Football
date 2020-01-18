@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Room;
@@ -24,7 +23,6 @@ import com.example.football.room.AppDatabase;
 import com.example.football.room.model_room.RoomCompetitions;
 import com.example.football.room.model_room.RoomTeamInfo;
 import com.example.football.room.model_room.RoomTeams;
-import com.example.football.ui.home.HomeFragment;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -301,7 +299,6 @@ public class Repository {
                     public void onError(Throwable e) {
 
                         progTeams.setVisibility(View.GONE);
-                        textChose.setText("No data available now  \n please try another competition");
 
 
 
@@ -492,7 +489,7 @@ public class Repository {
 
 
 
-    public LiveData<List<TeamInfoResponse>> getFavoriteList(Context context, TextView nofavorite){
+    public MutableLiveData<List<TeamInfoResponse>> getFavoriteList(Context context, TextView nofavorite){
 
         initDB(context);
 
@@ -514,7 +511,10 @@ public class Repository {
 
         }else {
 
+
             nofavorite.setVisibility(View.VISIBLE);
+
+
         }
 
 

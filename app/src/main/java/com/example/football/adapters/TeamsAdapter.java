@@ -24,7 +24,6 @@ import com.example.football.ui.team.TeamFragment;
 
 import java.util.ArrayList;
 
-import static com.example.football.helper.HelperMethods.isNetworkAvailable;
 import static com.example.football.helper.HelperMethods.replace;
 
 public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.TeamsViewHolder> {
@@ -37,6 +36,8 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.TeamsViewHol
 
     public TeamsAdapter(Activity activity) {
         this.activity = activity;
+        notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -68,11 +69,9 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.TeamsViewHol
                 }else {
 
 
-//                    if (isNetworkAvailable(holder.itemView.getContext())){
 
                         Utils.fetchSvg(holder.itemView.getContext(), crestUrl,holder.itemTeamsBinding.imageTeam , activity);
 
-//                    }
 
 
                 }
@@ -96,32 +95,13 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.TeamsViewHol
                 TeamFragment fragment = new TeamFragment();
                 fragment.setArguments(bundle);
 
-
-
                 replace(fragment,R.id.container_home,((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction(),v.getContext().getString(R.string.tag_team));
-
 
 
             }
         });
 
-//        holder.itemCompetitionsBinding.itemComp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Long id = competition.getId();
-//                Bundle bundle = new Bundle();
-//                bundle.putLong("id",id);
-//                TeamsFragment fragment = new TeamsFragment();
-//                fragment.setArguments(bundle);
-//
-//
-//                replace(fragment,R.id.container_home,((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction(),v.getContext().getString(R.string.tag_teams));
-//
-//
-//
-//            }
-//        });
+
 
     }
 
