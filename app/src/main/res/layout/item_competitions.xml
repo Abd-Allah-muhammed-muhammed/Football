@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="comp"
+            type="com.example.football.model.Competition"/>
+
+
+    </data>
+
+    <RelativeLayout
+
+        android:background="@drawable/bg_item_competition"
+        android:id="@+id/item_comp"
+
+        android:layout_marginBottom="@dimen/_24"
+        android:layout_marginTop="@dimen/_8"
+        android:layout_marginEnd="@dimen/_8"
+        android:layout_marginStart="@dimen/_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/count"
+            android:text="@{comp.numberOfAvailableSeasons.toString()}"
+            android:padding="@dimen/_8"
+            android:textColor="@color/white"/>
+
+
+        
+        <TextView
+            android:id="@+id/compe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{comp.name}"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:layout_margin="@dimen/_8"
+            android:textSize="@dimen/_18s"
+           />
+
+        <TextView
+            android:background="@color/colorAccent"
+            android:layout_below="@+id/compe_name"
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:gravity="center"
+
+            android:layout_marginStart="@dimen/_8"
+            android:layout_marginEnd="@dimen/_8"
+            android:textSize="@dimen/_24s"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_below="@+id/line"
+            android:id="@+id/area_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{comp.area.name}"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_margin="@dimen/_8"
+            android:textSize="@dimen/_24s"
+           />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</layout>

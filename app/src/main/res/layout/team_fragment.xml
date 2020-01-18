@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <data>
+
+        <variable
+            name="team_info"
+            type="com.example.football.model.TeamInfoResponse" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.team.TeamFragment">
+
+
+        <RelativeLayout
+            android:id="@+id/layout_image"
+            android:layout_margin="@dimen/_4"
+            android:background="@drawable/bg_item_competition"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150">
+
+
+
+            <ImageView
+
+                android:src="@drawable/nodata"
+                android:scaleType="fitXY"
+                android:layout_margin="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image_team"/>
+
+
+
+
+
+
+            <TextView
+                android:padding="@dimen/_8"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/shadwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{team_info.name}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_24s"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_8"/>
+
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/prog_info"/>
+
+
+        </RelativeLayout>
+
+
+
+
+        <ImageView
+            android:layout_margin="@dimen/_4"
+            android:src="@drawable/ic_not_favorite_black_24dp"
+            android:id="@+id/image_favorite"
+            android:layout_width="@dimen/_50"
+            android:layout_height="@dimen/_50"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/layout_image"
+            android:layout_centerHorizontal="true"
+             />
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_favorite"
+            tools:listitem="@layout/item_player"
+            android:layout_margin="@dimen/_8"
+            android:id="@+id/rv_player_info"/>
+
+
+
+
+
+    </RelativeLayout>
+</layout>

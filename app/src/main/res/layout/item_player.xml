@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+
+
+        <variable
+            name="player"
+            type="com.example.football.model.Squad" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{player.name}"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_item_competition"
+            android:padding="@dimen/_8"
+            android:textSize="@dimen/_18s"/>
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{player.position}"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_item_competition"
+            android:padding="@dimen/_8"
+            android:textSize="@dimen/_18s"/>
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{player.nationality}"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_item_competition"
+            android:padding="@dimen/_8"
+            android:textSize="@dimen/_18s"/>
+
+<TextView
+    android:gravity="center"
+            android:layout_marginTop="@dimen/_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{player.role}"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_item_competition"
+            android:padding="@dimen/_8"
+            android:textSize="@dimen/_18s"/>
+
+
+        <TextView
+
+            android:layout_marginBottom="@dimen/_8"
+            android:layout_marginEnd="@dimen/_24"
+            android:layout_marginStart="@dimen/_24"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="@dimen/_8"
+            android:background="@color/colorAccent"/>
+
+    </LinearLayout>
+
+
+</layout>

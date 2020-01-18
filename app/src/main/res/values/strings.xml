@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Football</string>
+    <string name="token">8e9bf170562649cb93fb4d17e185945f</string>
+    <string name="tag_home">tag_home</string>
+    <string name="chose_your_competition">Chose Your Competition</string>
+    <string name="tag_teams">tag_teams</string>
+    <string name="chose_your_team">Chose Your Team</string>
+    <string name="tag_team">tag_team</string>
+    <string name="nodata">No Data</string>
+    <string name="my_favorite">My Favorite</string>
+    <string name="tag_favorit">tagfavorit</string>
+</resources>

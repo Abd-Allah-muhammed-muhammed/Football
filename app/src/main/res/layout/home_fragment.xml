@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.test.home.HomeFragment">
+
+
+
+
+
+
+        <TextView
+
+            android:id="@+id/text_chose"
+            android:textSize="@dimen/_24s"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/chose_your_competition"
+            android:layout_margin="@dimen/_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <ProgressBar
+            android:id="@+id/prog_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:layout_margin="@dimen/_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_chose"
+            tools:listitem="@layout/item_competitions"
+            android:id="@+id/rv_competitions"/>
+
+
+
+    </RelativeLayout>
+
+</layout>
+
+
