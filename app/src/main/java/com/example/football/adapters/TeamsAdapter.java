@@ -1,13 +1,11 @@
 package com.example.football.adapters;
 
 import android.app.Activity;
-import android.graphics.drawable.PictureDrawable;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -36,7 +34,6 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.TeamsViewHol
 
     public TeamsAdapter(Activity activity) {
         this.activity = activity;
-        notifyDataSetChanged();
 
     }
 

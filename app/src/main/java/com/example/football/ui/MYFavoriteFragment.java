@@ -1,12 +1,10 @@
 package com.example.football.ui;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,6 @@ import com.example.football.adapters.TeamsAdapter;
 import com.example.football.databinding.MyfavoriteFragmentBinding;
 import com.example.football.model.TeamInfoResponse;
 import com.example.football.model.teams.Team;
-import com.example.football.model.teams.TeamsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,8 +99,8 @@ public class MYFavoriteFragment extends Fragment {
 
     @Override
     public void onResume() {
-        adapter.notifyDataSetChanged();
         fetchData();
+        adapter.notifyDataSetChanged();
         super.onResume();
 
     }

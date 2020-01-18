@@ -73,8 +73,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-
-
         HomeFragment HomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tag_home));
         if (HomeFragment != null && HomeFragment.isVisible()) {
 

@@ -186,8 +186,6 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();

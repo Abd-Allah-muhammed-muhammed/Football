@@ -422,7 +422,6 @@ public class Repository {
                             progInfo.setVisibility(View.GONE);
                         }else {
 
-                            imageFavorite.setVisibility(View.GONE);
                         }
 
 
@@ -506,6 +505,7 @@ public class Repository {
 
                 teamInfoResponses.add(teamInfoResponse);
             }
+
 
             dataListMyFavorite.setValue(teamInfoResponses);
 
